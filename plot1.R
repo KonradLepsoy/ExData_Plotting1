@@ -1,5 +1,5 @@
 # Load required packages.
-#install.packages("sqldf")
+install.packages("sqldf")
 
 library(utils)
 library(data.table)
