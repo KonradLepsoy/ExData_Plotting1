@@ -8,11 +8,11 @@ library(sqldf)
 # Get file from file location
 url<-"https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 
-# Set working directory to Assignment 1-2 folder
-if (!file.exists("Assignment 1-2")) {
-  dir.create("Assignment 1-2")
+# Set working directory to Assignment 1-3 folder
+if (!file.exists("Assignment 1-3")) {
+  dir.create("Assignment 1-3")
 }
-setwd("./Assignment 1-2")
+setwd("./Assignment 1-3")
 
 # unzip file
 if (!file.exists("household_power_consumption.txt")) {
@@ -33,11 +33,20 @@ PowerConsumption$DateTime <- as.POSIXlt( paste(PowerConsumption$Date, PowerConsu
 # Create numeric
 PowerConsumption$globalActivePower <- as.numeric(PowerConsumption$globalActivePower)
 
-plot (PowerConsumption$DateTime, PowerConsumption$Global_active_power, type="l", 
-      xlab= "", ylab="Global active power (kilowatts)")
+plot (PowerConsumption$DateTime, PowerConsumption$Sub_metering_1, type="l", 
+      xlab= "", ylab="Energy Sub Metering")
+
+# add lines for the remaining submeters
+lines(PowerConsumption$DateTime, PowerConsumption$Sub_metering_2, col = "red") 
+lines(PowerConsumption$DateTime, PowerConsumption$Sub_metering_3, col = "blue") 
+
+# add legend
+legend("topright", pch="_", col = c("black", "red", "blue"), 
+       legend = c("Sub_metering 1", "Sub_metering 2", "Sub_metering 3"))
+
 
 # Save the plot to a .png file 
 # the default size for a .png is 480 x 480 pixels
-dev.copy(png, file="plot2.png", bg="transparent")
+dev.copy(png, file="plot3.png", bg="transparent")
 dev.off()
 setwd("..") # go back to original working directory
