@@ -37,6 +37,8 @@ PowerConsumption$Global_reactive_power <- as.numeric(PowerConsumption$Global_rea
 
 # set four plots
 par(mfrow = c(2,2))
+# Set a smaller font size
+par(cex=.75)  
 
 #  ******
 
